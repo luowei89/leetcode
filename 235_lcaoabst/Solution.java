@@ -12,28 +12,12 @@ public class Solution {
         if(root == null) {
             return null;
         }
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        if(left != null) {
-            return left;
-        }
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if(right != null) {
-            return right;
-        }
-        if (inTree(root, p) && inTree(root, q)) {
-            return root;
+        if(p.val < root.val && q.val < root.val) {
+            return lowestCommonAncestor(root.left, p, q);
+        } else if (p.val > root.val && q.val > root.val) {
+            return lowestCommonAncestor(root.right, p, q);
         } else {
-            return null;
+            return root;
         }
-    }
-    
-    public boolean inTree(TreeNode root, TreeNode n) {
-        if(root == null || n == null){
-            return false;
-        }
-        if(root.equals(n)) {
-            return true;
-        }
-        return inTree(root.left, n) || inTree(root.right, n);
     }
 }
