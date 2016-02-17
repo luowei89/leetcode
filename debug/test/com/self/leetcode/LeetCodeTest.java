@@ -80,4 +80,23 @@ public class LeetCodeTest {
         assertEquals(leetcode.myAtoi("+"), 0);
         assertEquals(leetcode.myAtoi("-1"), -1);
     }
+
+    // 238. Product of Array Except Self
+    @Test
+    public void testProductExceptSelf() {
+        int[] a = {1,2,3,4};
+        int[] b = {24,12,8,6};
+        assertEquals(leetcode.productExceptSelf(a), b);
+    }
+
+    // 319. Bulb Switcher
+    @Test
+    public void testBulbSwitch() {
+        assertEquals(leetcode.bulbSwitch(9999999), 3162);
+        assertEquals(leetcode.bulbSwitch(0), 0);
+        assertEquals(leetcode.bulbSwitch(1), 1);
+        assertEquals(leetcode.bulbSwitch(2), 1);
+        assertEquals(leetcode.bulbSwitch(3), 1);
+
+    }
 }

@@ -232,4 +232,31 @@ public class LeetCode {
         }
         return (int)sum * sign;
     }
+
+    // 238. Product of Array Except Self
+    public int[] productExceptSelf(int[] nums) {
+        // Given n > 1
+        int n = nums.length;
+        int[] left = new int[n];
+        int[] right = new int[n];
+        left[0] = right[n-1] = 1;
+        for (int i = 1; i < n; i++) {
+            left[i] = left[i-1] * nums[i-1];
+            right[n-i-1] = right[n-i] * nums[n-i];
+        }
+        int[] result = new int[n];
+        for (int i = 0; i < n; i++) {
+            result[i] = left[i] * right[i];
+        }
+        return result;
+    }
+
+    // 319. Bulb Switcher
+    public int bulbSwitch(int n) {
+        int i = 1;
+        while(i*i <= n) {
+            i++;
+        }
+        return i-1;
+    }
 }
