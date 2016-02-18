@@ -72,19 +72,4 @@ public class Solution {
         }
         return result;
     }
-
-    private boolean isCandidate(String word1, String word2) {
-        // All words have the same length.
-        int n = word1.length();
-        int diff = 0;
-        for (int i = 0; i < n; i++) {
-            if (word1.charAt(i) != word2.charAt(i)) {
-                diff++;
-            }
-            if (diff > 1) {
-                return false;
-            }
-        }
-        return diff > 0;
-    }
 }
