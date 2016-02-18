@@ -99,4 +99,11 @@ public class LeetCodeTest {
         assertEquals(leetcode.bulbSwitch(3), 1);
 
     }
+
+    // 79. Word Search
+    @Test
+    public void testExist() {
+        char[][] board1 = {{'A','B','C','E'},{'S', 'F', 'E', 'S'},{'A', 'D', 'E', 'E'}};
+        assertTrue(leetcode.exist(board1, "ABCESEEEFS"));
+    }
 }
