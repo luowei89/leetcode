@@ -1,5 +1,6 @@
 package com.self.leetcode;
 
+import com.beust.jcommander.internal.Lists;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -105,5 +106,19 @@ public class LeetCodeTest {
     public void testExist() {
         char[][] board1 = {{'A','B','C','E'},{'S', 'F', 'E', 'S'},{'A', 'D', 'E', 'E'}};
         assertTrue(leetcode.exist(board1, "ABCESEEEFS"));
+    }
+
+    // 187. Repeated DNA Sequences
+    @Test
+    public void testFindRepeatedDnaSequences() {
+        assertEquals(leetcode.findRepeatedDnaSequences(""), Lists.newArrayList());
+        assertEquals(leetcode.findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"), Lists.newArrayList("AAAAACCCCC", "CCCCCAAAAA"));
+    }
+
+    // 137. Single Number II
+    @Test
+    public void testSingleNumber() {
+        int[] nums = {-2,-2,1,1,-3,1,-3,-3,-4,-2};
+        assertEquals(leetcode.singleNumber(nums), -4);
     }
 }
