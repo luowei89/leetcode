@@ -121,4 +121,11 @@ public class LeetCodeTest {
         int[] nums = {-2,-2,1,1,-3,1,-3,-3,-4,-2};
         assertEquals(leetcode.singleNumber(nums), -4);
     }
+
+    // 33. Search in Rotated Sorted Array
+    @Test
+    public void testSearch() {
+        int[] nums = {3, 1};
+        assertEquals(leetcode.search(nums, 3), 0);
+    }
 }
