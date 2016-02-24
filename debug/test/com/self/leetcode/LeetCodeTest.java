@@ -128,4 +128,11 @@ public class LeetCodeTest {
         int[] nums = {3, 1};
         assertEquals(leetcode.search(nums, 3), 0);
     }
+
+    @Test
+    public void testFractionToDecimal() {
+        assertEquals(leetcode.fractionToDecimal(-1, -2147483648), "0.0000000004656612873077392578125");
+        assertEquals(leetcode.fractionToDecimal(-50, 8), "-6.25");
+        assertEquals(leetcode.fractionToDecimal(1, 333), "0.(003)");
+    }
 }
