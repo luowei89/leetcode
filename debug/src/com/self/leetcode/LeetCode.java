@@ -1,6 +1,5 @@
 package com.self.leetcode;
 
-import java.net.StandardSocketOptions;
 import java.util.*;
 
 /**
@@ -467,10 +466,5 @@ public class LeetCode {
             }
         }
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        String[] x = "    a     b  ".split(" ");
-        System.out.println();
     }
 }
