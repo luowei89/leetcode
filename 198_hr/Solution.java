@@ -1,19 +1,21 @@
 public class Solution {
-    public int rob(int[] num) {
-        int n = num.length;
-        if(n == 0){
-            return 0;
+    public int rob(int[] nums) {
+        int[] sums = new int[nums.length];
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int sum1 = nums[i];
+            if (i-3 >= 0) {
+                sum1 += sums[i-3];
+            }
+            int sum2 = nums[i];
+            if (i-2 >= 0) {
+                sum2 += sums[i-2];
+            }
+            sums[i] = sum1 > sum2 ? sum1 : sum2;
+            if (sums[i] > max) {
+                max = sums[i];
+            }
         }
-        if(n == 1){
-            return num[0];
-        }
-        num[1] = Math.max(num[0],num[1]);
-        if(n == 2){
-            return num[1];
-        }
-        for(int i = 2; i < n; i++){
-            num[i] = Math.max(num[i-1],num[i]+num[i-2]);
-        }
-        return num[n-1];
+        return max;
     }
 }
