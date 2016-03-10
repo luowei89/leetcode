@@ -135,4 +135,13 @@ public class LeetCodeTest {
         assertEquals(leetcode.fractionToDecimal(-50, 8), "-6.25");
         assertEquals(leetcode.fractionToDecimal(1, 333), "0.(003)");
     }
+
+    // 97. Interleaving String
+    @Test
+    public void testIsInterleave() {
+        assertTrue(leetcode.isInterleave("aabcc","dbbca","aadbcbbcac"));
+        assertTrue(leetcode.isInterleave("aabcc","dbbca","aadbbcbcac"));
+        assertFalse(leetcode.isInterleave("aabcc","dbbca","aadbbbaccc"));
+        assertTrue(leetcode.isInterleave("","",""));
+    }
 }
