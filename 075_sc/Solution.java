@@ -1,25 +1,32 @@
 public class Solution {
-    public void sortColors(int[] A) {
-        int[] flags = new int[3];
-        for(int i = 0; i < A.length; i++){
-            if(A[i] == 0){
-                A[flags[2]]=2;
-                A[flags[1]]=1;
-                A[flags[0]]=0;
-                flags[0]++;
-                flags[1]++;
-                flags[2]++;
-            }
-            else if(A[i] == 1){
-                A[flags[2]]=2;
-                A[flags[1]]=1;
-                flags[1]++;
-                flags[2]++;
-            }
-            else if(A[i] == 2){
-                A[flags[2]]=2;
-                flags[2]++;
+    public static final int RED = 0;
+    public static final int WHITE = 1;
+    public static final int BLUE = 2;
+    public void sortColors(int[] nums) {
+        int p = 0;
+        int q = nums.length - 1;
+        int i = 0;
+        while (i <= q) {
+            switch (nums[i]) {
+                case RED :
+                    swap(nums, i, p);
+                    i++;
+                    p++;
+                    break;
+                case WHITE:
+                    i++;
+                    break;
+                case BLUE:
+                    swap(nums, i, q);
+                    q--;
+                    break;
             }
         }
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
