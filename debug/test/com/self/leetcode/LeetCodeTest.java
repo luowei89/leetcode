@@ -144,4 +144,17 @@ public class LeetCodeTest {
         assertFalse(leetcode.isInterleave("aabcc","dbbca","aadbbbaccc"));
         assertTrue(leetcode.isInterleave("","",""));
     }
+
+    //30. Substring with Concatenation of All Words
+    @Test
+    public void testFindSubstring() {
+        String[] words = {"bar","foo","the"};
+        assertEquals(leetcode.findSubstring("barfoofoobarthefoobarman", words), Lists.newArrayList(6,9,12));
+
+        String[] words1 = {"word","good","best","good"};
+        assertEquals(leetcode.findSubstring("wordgoodgoodgoodbestwordgood", words1), Lists.newArrayList(8,12));
+
+        String[] words2 = {"aa","aa","aa"};
+        assertEquals(leetcode.findSubstring("aaaaaaaa", words2), Lists.newArrayList(0,2,1));
+    }
 }
