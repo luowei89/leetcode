@@ -157,4 +157,13 @@ public class LeetCodeTest {
         String[] words2 = {"aa","aa","aa"};
         assertEquals(leetcode.findSubstring("aaaaaaaa", words2), Lists.newArrayList(0,2,1));
     }
+
+    //76. Minimum Window Substring
+    @Test
+    public void testMinWindow() {
+        assertEquals(leetcode.minWindow("ADOBECODEBANC", "AB"), "BA");
+        assertEquals(leetcode.minWindow("ADOBECODEBANC", "ABC"), "BANC");
+        assertEquals(leetcode.minWindow("ADOBECODEBANC", "ABCA"), "ADOBECODEBA");
+
+    }
 }
