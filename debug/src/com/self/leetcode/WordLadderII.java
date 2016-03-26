@@ -7,17 +7,10 @@ import java.util.*;
  * 126. Word Ladder II
  */
 public class WordLadderII {
-    private static char[] chars = new char[26];
-    static {
-        for (int i = 0; i < 26; i++) {
-            chars[i] = (char)('a' + i);
-        }
-    }
 
     public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
         // All words have the same length.
         // All words contain only lowercase alphabetic characters.
-        Map<String, List<String>> nextMap = new HashMap<>();
         Queue<List<String>> queue = new LinkedList();
         boolean found = false;
         List<List<String>> result = new ArrayList<>();
@@ -36,7 +29,6 @@ public class WordLadderII {
                 continue;
             }
             String tail = node.get(node.size()-1);
-            List<String> nexts = new ArrayList<>();
             List<String> candidates = getCandidates(tail, endWord, wordList);
             if (candidates == null) {
                 found = true;
@@ -50,10 +42,8 @@ public class WordLadderII {
                     list.add(str);
                     queue.add(list);
                     level.add(str);
-                    nexts.add(str);
                 }
             }
-            nextMap.put(tail, nexts);
         }
         return result;
     }
@@ -64,7 +54,7 @@ public class WordLadderII {
         char[] wordChars = word.toCharArray();
         for (int i = 0; i < n; i++) {
             char original = wordChars[i];
-            for (char c : chars) {
+            for (char c  = 'a'; c <= 'z'; c++) {
                 if (c != original) {
                     wordChars[i] = c;
                     String candidate = new String(wordChars);
