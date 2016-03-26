@@ -5,32 +5,45 @@ public class Solution {
             return 0;
         }
         int n = matrix[0].length;
-        PriorityQueue<Node> nodes = new PriorityQueue<>();
+        Queue<Integer> coordinates = new LinkedList<>();
         int[][] lengths = new int[m][n];
+        int[][] outlinks = new int[m][n];
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                nodes.add(new Node(matrix[i][j], i, j));
                 lengths[i][j] = 1;
+                if (i + 1 < m && matrix[i + 1][j] > matrix[i][j]) {
+                    outlinks[i][j]++;
+                }
+                if (i - 1 >= 0 && matrix[i - 1][j] > matrix[i][j]) {
+                    outlinks[i][j]++;
+                }
+                if (j + 1 < n && matrix[i][j + 1] > matrix[i][j]) {
+                    outlinks[i][j]++;
+                }
+                if (j - 1 >= 0 && matrix[i][j - 1] > matrix[i][j]) {
+                    outlinks[i][j]++;
+                }
+                if (outlinks[i][j] == 0) {
+                    coordinates.add(i);
+                    coordinates.add(j);
+                }
             }
         }
         int longest = 0;
         
-        while (!nodes.isEmpty()) {
-            Node node = nodes.poll();
-            int x = node.getX(), y = node.getY();
-            int val = node.getVal();
-            lengths[x][y] = 1;
-            if (x + 1 < matrix.length && matrix[x + 1][y] > val) {
-                lengths[x][y] = Math.max(lengths[x + 1][y] + 1, lengths[x][y]);
+        while (!coordinates.isEmpty()) {
+            int x = coordinates.poll(), y = coordinates.poll();
+            if (x + 1 < m) {
+                updateGrid(x, y, x + 1, y, matrix, lengths, outlinks, coordinates);
             }
-            if (x - 1 >= 0 && matrix[x - 1][y] > val) {
-                lengths[x][y] = Math.max(lengths[x - 1][y] + 1, lengths[x][y]);
+            if (x - 1 >= 0) {
+                updateGrid(x, y, x - 1, y, matrix, lengths, outlinks, coordinates);
             }
-            if (y + 1 < matrix[0].length && matrix[x][y + 1] > val) {
-                lengths[x][y] = Math.max(lengths[x][y + 1] + 1, lengths[x][y]);
+            if (y + 1 < n) {
+                updateGrid(x, y, x, y + 1, matrix, lengths, outlinks, coordinates);
             }
-            if (y - 1 >= 0 && matrix[x][y - 1] > val) {
-                lengths[x][y] = Math.max(lengths[x][y - 1] + 1, lengths[x][y]);
+            if (y - 1 >= 0) {
+                updateGrid(x, y, x, y - 1, matrix, lengths, outlinks, coordinates);
             }
             if (lengths[x][y] > longest) {
                 longest = lengths[x][y];
@@ -39,32 +52,15 @@ public class Solution {
         return longest;
     }
     
-    public class Node implements Comparable {
-        private int val;
-        private int x;
-        private int y;
-
-        public Node(int val, int x, int y) {
-            this.val = val;
-            this.x = x;
-            this.y = y;
-        }
-    
-        @Override
-        public int compareTo(Object o) {
-            return ((Node) o).getVal() - this.val;
-        }
-    
-        public int getVal() {
-            return this.val;
-        }
-    
-        public int getX() {
-            return x;
-        }
-    
-        public int getY() {
-            return y;
+    public void updateGrid(int x1, int y1, int x2, int y2, int[][] matrix, int[][] lengths, int[][] outlinks, Queue<Integer> coordinates) {
+        if (matrix[x2][y2] > matrix[x1][y1]) {
+            lengths[x1][y1] = Math.max(lengths[x2][y2] + 1, lengths[x1][y1]);
+        } else if (matrix[x2][y2] < matrix[x1][y1]) {
+            outlinks[x2][y2]--;
+            if (outlinks[x2][y2] == 0) {
+                coordinates.add(x2);
+                coordinates.add(y2);
+            }
         }
     }
 }

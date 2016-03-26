@@ -166,4 +166,11 @@ public class LeetCodeTest {
         assertEquals(leetcode.minWindow("ADOBECODEBANC", "ABCA"), "ADOBECODEBA");
 
     }
+
+    // 32. Longest Valid Parentheses
+    @Test
+    public void testValidParentheses() {
+        assertEquals(leetcode.longestValidParentheses("()"), 2);
+        assertEquals(leetcode.longestValidParentheses(")(((((()())()()))()(()))("), 22);
+    }
 }
