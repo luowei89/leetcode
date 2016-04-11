@@ -1,31 +1,25 @@
 public class Solution {
-    public double pow(double x, int n){
-        if(x == 0){
-            return 0;
+    public double myPow(double x, int n) {
+        boolean neg = false;
+        if (n < 0) {
+            n = 0 - n;
+            neg = true;
         }
-        else if(x == 1){
-            return 1;
-        }
-        else if(x == -1){
-            return n%2==0?1:-1;
-        }
-        else if(n < 0){
-            return 1/power(x, -n);
-        }
-        else {
-            return power(x, n);
-        }
+        double pow = myPowHelper(x, n);
+        return neg? 1 / pow : pow;
     }
-    private double power(double x, int n){
-        if(n == 0){
+    public double myPowHelper(double x, int n) {
+        if (n == 0) {
             return 1;
+        } else if (n == 1) {
+            return x;
         }
-        double v = power(x,n/2);
-        if(n%2 == 0){
-            return v*v;
+        int half = n / 2;
+        double pow = myPow(x, half);
+        pow = pow * pow;
+        if (n % 2 == 1) {
+            pow = pow * x;
         }
-        else{
-            return v*v*x;
-        }
+        return pow;
     }
 }
