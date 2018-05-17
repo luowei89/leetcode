@@ -7,13 +7,21 @@
  * }
  */
 func kthSmallest(root *TreeNode, k int) int {
-    return inorder(root)[k - 1]
-}
-
-func inorder(root *TreeNode) []int {
-    if root == nil {
-        return nil
+    val := 0
+    n := 0
+    var inorder func(*TreeNode)
+    inorder = func(node *TreeNode) {
+        if node == nil || n == k {
+            return
+        }
+        inorder(node.Left)
+        n++
+        if n == k {
+            val = node.Val
+        }
+        inorder(node.Right)
     }
-    return append(append(inorder(root.Left), root.Val) , inorder(root.Right)...)
+    inorder(root)
+    return val
 }
 
